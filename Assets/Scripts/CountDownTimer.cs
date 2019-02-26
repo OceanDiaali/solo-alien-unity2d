@@ -19,7 +19,13 @@ public class CountDownTimer : MonoBehaviour {
 	void Update () {
 		if (currentTime > 0) {
 			currentTime -= 1 * Time.deltaTime;
+			if (currentTime < 10) {
+				countdownText.color = Color.red;
+			}
 			countdownText.text = currentTime.ToString ("0");
+		} else {
+				countdownText.text = "Time Up!";
 		}
+			
 	}
 }
