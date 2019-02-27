@@ -5,15 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	public Text scoreText;
-	private int score;
-
 	public GameObject laserRing;
 
 	// Use this for initialization
 	void Start () {
-		score = 0;
-		SetScoreText ();
 	}
 	
 	// Update is called once per frame
@@ -29,13 +24,10 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
+			SoundManagerScript.PlaySound ("lazerzap");
 			Instantiate (laserRing, transform.position, Quaternion.identity);
 		}
 	}
 
-	// set score display
-	void SetScoreText() {
-		//score = score + 1;
-		scoreText.text = "Score: " + score.ToString ();
-	}
+
 }

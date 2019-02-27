@@ -11,6 +11,15 @@ public class FlameScript : MonoBehaviour {
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
 	}
+
+	// Function called when the enemy collides with another object
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		if(col.gameObject.name == "Player")
+		{
+			Destroy (col.gameObject);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,4 +29,7 @@ public class FlameScript : MonoBehaviour {
 	void OnBecameInvisible() {
 		Destroy (gameObject);
 	}
-}
+
+
+
+} // flame script class

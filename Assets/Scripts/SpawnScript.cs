@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnScript : MonoBehaviour {
 
 	public GameObject enemy;
-
+	public GameObject greyMatter;
 	public float spawnTime = 2.0f;
 
 	Renderer rd;
@@ -15,6 +15,7 @@ public class SpawnScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating ("addEnemy", 0, spawnTime);
+		InvokeRepeating ("addMatter", 0, spawnTime);
 	}
 
 	void addEnemy() {
@@ -32,6 +33,23 @@ public class SpawnScript : MonoBehaviour {
 
 		// Create an enemy at the 'spawnPoint' position
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
+	}
+
+	void addMatter() {
+		rd = GetComponent<Renderer> ();
+
+		// Position of the left edge of the spawn object
+		// It's: (position of the center) minus (half the width)
+		var x1 = transform.position.x - rd.bounds.size.x/4;
+
+		// Same for the right edge
+		var x2 = transform.position.x + rd.bounds.size.x/4;
+
+		// Randomly pick a point within the spawn object
+		spawnPoint = new Vector2(Random.Range(x1, x2), transform.position.y);
+
+		// Create an matter at the 'spawnPoint' position
+		Instantiate(greyMatter, spawnPoint, Quaternion.identity);
 	}
 	
 	// Update is called once per frame

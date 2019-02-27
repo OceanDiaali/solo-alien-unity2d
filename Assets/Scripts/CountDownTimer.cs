@@ -25,6 +25,7 @@ public class CountDownTimer : MonoBehaviour {
 			countdownText.text = currentTime.ToString ("0");
 		} else {
 				countdownText.text = "Time Up!";
+			    Time.timeScale = 0;
 		}
 			
 	}
